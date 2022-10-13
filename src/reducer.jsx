@@ -11,7 +11,7 @@ const reducer = (state, action) => {
     console.log("you increase amount");
   }
   if (action.type === REMOVE) {
-    console.log("you remove amount");
+    console.log(action.id);
   }
 
   return state;
