@@ -11,20 +11,10 @@ import { createStore } from "redux";
 // react-redux - Provider - wraps app, connect - used in components
 import { Provider } from "react-redux";
 
-// Actions
-import { INCREASE, DECREASE } from "./action";
-
 // Reducer
 import reducer from "./reducer";
 
-// initial store
-const initialStore = {
-  cart: cartItems,
-  total: 105,
-  amount: 5,
-};
-
-const store = createStore(reducer, initialStore);
+const store = createStore(reducer);
 
 function App() {
   // cart setup

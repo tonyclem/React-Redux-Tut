@@ -7,7 +7,17 @@ import {
   TOGGLE_AMOUNT,
 } from "./action";
 
-const reducer = (state, action) => {
+// items
+import cartItems from "./cart-items";
+
+// initial store
+const initialStore = {
+  cart: cartItems,
+  total: 0,
+  amount: 0,
+};
+
+const reducer = (state = initialStore, action) => {
   // Clear all items
   if (action.type === CLEAR_CART) {
     return { ...state, cart: [] };
