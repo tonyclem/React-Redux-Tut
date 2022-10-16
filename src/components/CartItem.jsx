@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { DECREASE, INCREASE, CLEAR_CART, REMOVE } from "../action";
+import { DECREASE, INCREASE, REMOVE } from "../action";
 
 const CartItem = ({
   img,
@@ -33,7 +33,10 @@ const CartItem = ({
         {/* amount */}
         <p className="amount">{amount}</p>
         {/* decrease amount */}
-        <button className="amount-btn" onClick={() => decrease()}>
+        <button
+          className="amount-btn"
+          onClick={() => (amount === 1 ? remove() : decrease())}
+        >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
             <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
           </svg>

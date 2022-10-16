@@ -1,25 +1,22 @@
 import { DECREASE, INCREASE, CLEAR_CART, REMOVE, GET_TOTALS } from "./action";
 
 const reducer = (state, action) => {
+  // Clear all items
   if (action.type === CLEAR_CART) {
     return { ...state, cart: [] };
   }
+  // Decrease Items
   if (action.type === DECREASE) {
-    let tempCart = [];
-    if (action.payload.amount === 1) {
-      tempCart = state.cart.filter(
-        (cartItem) => cartItem.id !== action.payload.id
-      );
-    } else {
-      tempCart = state.cart.map((cartItem) => {
-        if (cartItem.id === action.payload.id) {
-          cartItem = { ...cartItem, amount: cartItem.amount - 1 };
-        }
-        return cartItem;
-      });
-    }
+    let tempCart = state.cart.map((cartItem) => {
+      if (cartItem.id === action.payload.id) {
+        cartItem = { ...cartItem, amount: cartItem.amount - 1 };
+      }
+      return cartItem;
+    });
+
     return { ...state, cart: tempCart };
   }
+  // Increase items
   if (action.type === INCREASE) {
     let tempCart = state.cart.map((cartItem) => {
       if (cartItem.id === action.payload.id) {
@@ -30,7 +27,7 @@ const reducer = (state, action) => {
 
     return { ...state, cart: tempCart };
   }
-
+  // Remove items
   if (action.type === REMOVE) {
     return {
       ...state,
@@ -39,7 +36,7 @@ const reducer = (state, action) => {
       ),
     };
   }
-
+  // Get all Items totals
   if (action.type === GET_TOTALS) {
     let { total, amount } = state.cart.reduce(
       (cartTotal, cartItem) => {
